@@ -14,7 +14,7 @@ int main()
 	cout<<"Invild Input\n";
 	return 1;
 	}
-	cout<<"------"<<endl;
+	//cout<<"------"<<endl;
 	int A[ArowNum][AcolNum];
 	int B[BrowNum][BcolNum];
 	int C[ArowNum][BcolNum];
@@ -25,7 +25,7 @@ int main()
 			cin>>A[i][j];
 		}
 	}
-	cout<<"-----"<<endl;
+	//cout<<"-----"<<endl;
 
 	for (int i=0;i<BrowNum;i++)
 	{
@@ -35,7 +35,7 @@ int main()
 		}
 	}
 
-	cout<<"-----"<<endl;
+//	cout<""<<endl;
 
 	for (int i=0;i<ArowNum;i++)
 	{
@@ -48,7 +48,7 @@ int main()
 				}
 		}
 	}
-	
+	cout<<"\n";
 	for (int i=0;i<ArowNum;i++)
 	{
 		for (int j=0;j<AcolNum;j++)
@@ -57,7 +57,7 @@ int main()
 		}
 		cout<<"\n";
 	}
-	cout<<"-----"<<endl;
+	cout<<"\n";
 
 	for (int i=0;i<BrowNum;i++)
 	{
@@ -68,7 +68,7 @@ int main()
 		cout<<"\n";
 	}
 
-	cout<<"-----"<<endl;
+	cout<<"\n";
 
 	for (int i=0;i<ArowNum;i++)
 	{
