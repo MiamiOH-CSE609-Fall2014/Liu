@@ -9,7 +9,8 @@ int main()
 	cin>>AcolNum;
 	cin>>BrowNum;
 	cin>>BcolNum;
-	if(AcolNum!=BrowNum)
+
+	if(AcolNum!=BrowNum||ArowNum<=0||AcolNum<=0||BrowNum<=0||BcolNum<=0)
 	{
 	cout<<"Invild Input\n";
 	return 1;
