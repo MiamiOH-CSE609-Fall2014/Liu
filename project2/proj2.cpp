@@ -11,14 +11,16 @@ int main()
 	score=new double[100];
 	string * name=NULL;
 	name = new string[100];
-	string new_name;
 	double new_score;
+	string new_name;
 	bool test= true;
 	int number=0;
-	while(test)
+	while(true)
 	{
 		cout<<"Please enter a student's name, or 'none' to quit\n";
-		cin>>new_name;
+//		cin>>new_name;
+		cin.ignore();
+		getline(cin,new_name);
 		if(new_name.compare("none")!=0)
 		{
 			cout<<"Please enter the score\n"<<endl;
@@ -29,7 +31,7 @@ int main()
 		}
 		else
 		{
-			test=false;
+			break;
 		}
 	
 	}
@@ -53,7 +55,7 @@ int main()
 		temp+= (score[i]-mean)*(score[i]-mean);
 	}
 	std=sqrt(temp/number);
-	cout<<"STD "<<std<<endl;
+//	cout<<"STD "<<std<<endl;
 
 	double c=mean-0.5*std;
 	double b=c+std;
