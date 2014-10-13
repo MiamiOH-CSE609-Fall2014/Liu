@@ -24,7 +24,13 @@ int main()
 		if(new_name.compare("none")!=0)
 		{
 			cout<<"Please enter the score\n"<<endl;
+		
 			cin>>new_score;
+			if (new_score<0||new_score>100)	
+			{
+				cout<<"Invalid Score\n";
+				return 0;
+			}
 			*(name+number)=new_name;
 			*(score+number)=new_score;					
 			number++;	
