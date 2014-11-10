@@ -10,21 +10,16 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-  string filename = argv[1];
-  tuple<string,vector<string>,string> DNAdata= parseFastaFile(filename);
-  cout<<endl;  
-cout<<"The whole file contents are :"<<endl;
- cout<<endl;  
-string hd = get<0>(DNAdata);
-  string sq = get<2>(DNAdata);
-  cout<<hd<<endl;
-  for (int i=0; i<get<1>(DNAdata).size();i++){
-    cout<<get<1>(DNAdata)[i]<<endl;
+  string fileName = argv[1];
+  tuple<string,vector<string>,string> DNA= parseFastaFile(fileName); 
+  string header = get<0>(DNA);
+  string sequence = get<2>(DNA);
+  cout<<header<<endl;
+  for (int i=0; i<get<1>(DNA).size();i++)
+  {
+    cout<<get<1>(DNA)[i]<<endl;
   }
-  cout<<sq<<endl;
+  cout<<sequence<<endl;
 
-
-
-
- return 0;
+  return 0;
 }
