@@ -119,14 +119,6 @@ int main(int argc, char** argv)
   string fileName;
   fileName = argv[1];
   tuple<string,vector<string>,string> DNA= parseFastaFile(fileName); 
-  //string header = get<0>(DNA);
-  //string sequence = get<2>(DNA);
-  //cout<<header<<"\n";
-  //for (int i=0; i<get<1>(DNA).size();i++)
-  //{
-    //cout<<get<1>(DNA)[i]<<"\n";
- // }
-  //cout<<sequence<<"\n";
   coutMatrix(digramFreqMatrix(digramFreqScores(get<2>(DNA))));
 
   return 0;
