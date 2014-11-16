@@ -180,19 +180,19 @@ pair<int,int> scoreSequence(string haystack,string needle, vector<vector<int>> s
 }
 tuple<int,int,string> findHighScore(string haystack,vector<string> needle,vector<vector<int>> scoring_m){
     tuple<int,int,string> high_scorer;
-    pair<int,int> score;
+    pair<int,int> temp;
     for(int i=0;i<needle.size();i++)
     {
-      score=scoreSequence(haystack,needle[i],scoring_m);
-      if (score.second>get<1>(high_scorer))
+      temp=scoreSequence(haystack,needle[i],scoring_m);
+      if (temp.second>get<1>(high_scorer))
       {
-       get<0>(high_scorer)=score.first;
-       get<1>(high_scorer)=score.second;
+       get<0>(high_scorer)=temp.first;
+       get<1>(high_scorer)=temp.second;
        get<2>(high_scorer)= needle[i];
       }
     }
-    score.first=0;
-    score.second=0;
+    temp.first=0;
+    temp.second=0;
     return high_scorer;
   }
 ///////////////////////////////////////////////////////////////////////////////
