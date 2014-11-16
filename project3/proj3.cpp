@@ -17,6 +17,10 @@ tuple<string,vector<string>,string> parseFastaFile(string);
 map<string, int> digramFreqScores(string);
 vector<vector<int>> digramFreqMatrix(map<string,int>);
 void coutMatrix(vector< vector<int> > );
+void coutMatrix2(vector< vector<int> > );
+vector< vector<int> > parseScoringFile(string);
+pair<int,int> scoreSequence(string,string, vector<vector<int>>);
+tuple<int,int,string> findHighScore(string,vector<string>,vector<vector<int>>);
 
 //Functions
 tuple<string, vector<string>, string> parseFastaFile(string fileName)
@@ -93,7 +97,7 @@ vector< vector<int> > digramFreqMatrix(map<string, int> map1){
 }
 
 
-void coutMatrix(vector< vector<int> > matrix)
+void coutMatrix(vector<vector<int>> matrix)
 {
     cout<<"  A  G  C  T"<<"\n";
 	int k=1;	
@@ -113,6 +117,84 @@ for(int i = 0; i < 4; i++)
      }
            
 }
+void coutMatrix2(vector<vector<int>> matrix)
+{	
+   for(vector<int> temp : matrix)
+     {
+     for (int i : temp)
+     {
+        cout<<i<<" ";
+     }
+   cout<<"\n";          
+     }
+	cout<<endl;
+}
+vector<vector<int>> parseScoringFile(string fileName){
+  fstream input;
+  input.open(fileName, fstream::in);
+  vector<vector<int>> score_matrix ;
+  vector<int> row;
+  char buf[500];
+  while (input.getline(buf,500,','))
+    {
+      row.push_back(stoi(buf));
+
+      input.getline(buf,500,',');
+      row.push_back(stoi(buf));
+
+      input.getline(buf,500,',');
+      row.push_back(stoi(buf));
+
+      input.getline(buf,500);
+      row.push_back(stoi(buf));
+
+      score_matrix.push_back(row);
+      row.clear();
+
+    }
+	input.close();
+  return score_matrix;
+}
+pair<int,int> scoreSequence(string haystack,string needle, vector<vector<int>> scoring_m){
+  pair<int,int> max_score={0,0};int tempScore=0;int tempTotalScore=0;
+  map<char,int> AGCTmap={{'A',0},{'G',1},{'C',2},{'T',3}};
+  string hayPart;
+  int end = haystack.length()-needle.length();
+  for (int i=0;i<end+1;i++)
+  {
+    tempTotalScore=0;
+    tempScore = 0;
+    hayPart=haystack.substr(i,needle.length());
+    for (int i=0;i<needle.length();i++)
+    {
+	tempScore=scoring_m[AGCTmap[hayPart[i]]][AGCTmap[needle[i]]];
+	tempTotalScore+=tempScore;
+    }
+    if(tempTotalScore>=max_score.second)
+    {
+      max_score.first=i;
+      max_score.second=tempTotalScore;
+    }
+  }
+    return max_score;
+}
+tuple<int,int,string> findHighScore(string haystack,vector<string> needle,vector<vector<int>> scoring_m){
+    tuple<int,int,string> high_scorer;
+    pair<int,int> score;
+    for(int i=0;i<needle.size();i++)
+    {
+      score=scoreSequence(haystack,needle[i],scoring_m);
+      if (score.second>get<1>(high_scorer))
+      {
+       get<0>(high_scorer)=score.first;
+       get<1>(high_scorer)=score.second;
+       get<2>(high_scorer)= needle[i];
+      }
+    }
+    score.first=0;
+    score.second=0;
+    return high_scorer;
+  }
 ///////////////////////////////////////////////////////////////////////////////
 int main(int argc, char** argv)
 {
@@ -120,6 +202,48 @@ int main(int argc, char** argv)
   fileName = argv[1];
   tuple<string,vector<string>,string> DNA= parseFastaFile(fileName); 
   coutMatrix(digramFreqMatrix(digramFreqScores(get<2>(DNA))));
+	
+  string scoring_path;
+  scoring_path= argv[2];
+  vector<vector<int>> score_matrix;
+  score_matrix=parseScoringFile(scoring_path);
+  coutMatrix(score_matrix);
 
-  return 0;
+ cout<<"How many sequences would you like to score? "<<endl;
+ int num_seq=0;
+ cin>>num_seq;
+ string oneSeq;
+ vector<string> seqs;
+ for(int i=0;i<num_seq;i++){
+   cout<<"Please enter the sequence "<<i+1<<endl;
+   cin>>oneSeq;
+   seqs.push_back(oneSeq);
+   oneSeq="";
+ }
+/*vector<tuple<int,int,string>> high_scorers;
+
+for (int i=0;i<num_seq;i++)
+{
+ tuple<int,int,string>high_scorer;
+ high_scorer=findHighScore(get<2>(DNA),seqs,score_matrix);
+ high_scorers.push_back(high_scorer);
+}
+ 
+for (int i=0;i<num_seq;i++)
+{
+  cout<<"sequence\n";
+  cout<<get<2>(high_scorers[i])<<"\n";
+  cout<<"Score: "<<get<1>(high_scorers[i])<<" at position "<<get<0>(high_scorers[i])<<"\n";
+  cout<<"\n";
+}*/
+  tuple<int,int,string>high_scorer;
+  high_scorer=findHighScore(get<2>(DNA),seqs,score_matrix);
+  cout<<"sequence\n";
+  cout<<get<2>(high_scorer)<<"\n";
+  cout<<"\nScore: "<<get<1>(high_scorer)<<" at position "<<get<0>(high_scorer)<<"\n";
+  cout<<"The needle which produces the maximum score: "<<get<2>(high_scorer);
+  cout<<"\n";
+
+
+ return 0;
 }
