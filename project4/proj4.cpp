@@ -19,7 +19,7 @@ int main()
 	cin>>option;
 	cout<<("Please input In-filename( .txt file):\n"); 
 	cin>>inFile;
-	cout<<("Please input your Password:\n"); 
+	cout<<("Please input your Password(4 digits number):\n"); 
 	cin>>pwd;
 	cout<<("Please input Out-filename( .txt file):\n"); 
 	cin>>outFile;
@@ -49,12 +49,12 @@ void encfile(char *inFile,char *pwd,char *out_file)
 	int j=0; 
 	fp1=fopen(inFile,"r");
 	if(fp1==NULL){ 
-		cout<<("Error Input\n"); 
+		cout<<("Error Input File Name\n"); 
 		exit(1);
 	} 
 	fp2=fopen(out_file,"w"); 
 	if(fp2==NULL){ 
-		cout<<("Error Input\n"); 
+		cout<<("Error Output File Name\n"); 
 		exit(1);
 	} 
 
@@ -82,12 +82,12 @@ void decryptfile(char *inFile,char *pwd,char *outFile)
 	int j=0; 
 	fp1=fopen(inFile,"r");
 	if(fp1==NULL){ 
-		cout<<("Error Input\n"); 
+		cout<<("Error Input File Name\n"); 
 		exit(1);
 	} 
 	fp2=fopen(outFile,"w"); 
 	if(fp2==NULL){ 
-		cout<<("Error Input\n"); 
+		cout<<("Error Output File Name\n"); 
 		exit(1);
 	} 
 	
