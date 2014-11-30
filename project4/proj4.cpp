@@ -80,7 +80,7 @@ void decryptfile(char *inFile,char *pwd,char *outFile)
 { 
 	FILE *fp1,*fp2; 
 	register char ch; 
-	int j=0; 
+	//int j=0; 
 	int j0=0; 
 	fp1=fopen(inFile,"r");
 	if(fp1==NULL){ 
