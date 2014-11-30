@@ -17,11 +17,11 @@ int main()
 	cout<<("1. Encrypt a file  2. Decrypt a file\n");	
 	
 	cin>>option;
-	cout<<("Please input In-filename:\n"); 
+	cout<<("Please input In-filename( .txt file):\n"); 
 	cin>>inFile;
 	cout<<("Please input your Password:\n"); 
 	cin>>pwd;
-	cout<<("Please input Out-filename:\n"); 
+	cout<<("Please input Out-filename( .txt file):\n"); 
 	cin>>outFile;
 		
 	switch(option){
