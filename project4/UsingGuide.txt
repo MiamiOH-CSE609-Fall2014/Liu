@@ -1,0 +1,12 @@
+This program has two options. Enter 1 to encrypt txt file and 2 to decode txt file. 
+The password needs to be 4 digit number. 
+
+Example: Run program-> choosing option 1 to encrypt-> Enter file name "input.txt"->
+
+	Enter Password "1234"->Enter output file name "encrypted.txt" Then you got the encrypted
+	
+	text file. 
+
+	To decode it, you can simple choose option 2 and enter the file name "encrypted.txt"->
+	
+	Enter password "1234"-> Enter output file name "decode.txt" Then you get the original file.
