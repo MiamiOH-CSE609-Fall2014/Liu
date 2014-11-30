@@ -47,27 +47,26 @@ void encfile(char *inFile,char *pwd,char *out_file)
 	FILE *fp1,*fp2; 
 	register char ch; 
 	int j=0; 
-	int j0=0; 
 	fp1=fopen(inFile,"r");
 	if(fp1==NULL){ 
-		printf("cannot open in-file./n"); 
+		cout<<("Error Input\n"); 
 		exit(1);
 	} 
 	fp2=fopen(out_file,"w"); 
 	if(fp2==NULL){ 
-		printf("cannot open or create out-file./n"); 
+		cout<<("Error Input\n"); 
 		exit(1);
 	} 
 
-	while(pwd[++j0]);  
+	while(pwd[++j]);  
 
 	ch=fgetc(fp1); 
 
 	
 	while(!feof(fp1)){ 
-		if(j0 >7)
-		   j0 = 0;
-		ch += pwd[j0++];
+		if(j >7)
+		   j = 0;
+		ch += pwd[j++];
 		fputc(ch,fp2); 
 		ch=fgetc(fp1); 
 	} 
@@ -80,26 +79,25 @@ void decryptfile(char *inFile,char *pwd,char *outFile)
 { 
 	FILE *fp1,*fp2; 
 	register char ch; 
-	//int j=0; 
-	int j0=0; 
+	int j=0; 
 	fp1=fopen(inFile,"r");
 	if(fp1==NULL){ 
-		printf("cannot open in-file./n"); 
+		cout<<("Error Input\n"); 
 		exit(1);
 	} 
 	fp2=fopen(outFile,"w"); 
 	if(fp2==NULL){ 
-		printf("cannot open or create out-file./n"); 
+		cout<<("Error Input\n"); 
 		exit(1);
 	} 
 	
-	while(pwd[++j0]);  	
+	while(pwd[++j]);  	
 	ch=fgetc(fp1); 
 	
 	while(!feof(fp1)){ 
-		if(j0 >7)
-		   j0 = 0;
-		ch -= pwd[j0++];
+		if(j >7)
+		   j = 0;
+		ch -= pwd[j++];
 		fputc(ch,fp2);
 		ch=fgetc(fp1); 
 	} 
