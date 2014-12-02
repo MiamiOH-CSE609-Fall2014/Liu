@@ -57,7 +57,7 @@ void encoding(string fName,string outfName,char *pwd)
 	char out_file[30];
 	strcpy(inFile, fName.c_str());
 	strcpy(out_file, outfName.c_str());
-	register char ch; 
+	char cc;
 	int i=0; 
 	input=fopen(inFile,"r");
 	if(input==NULL){ 
@@ -73,15 +73,15 @@ void encoding(string fName,string outfName,char *pwd)
 
 	while(pwd[++i]);  
 
-	ch=fgetc(input); 
+	cc=fgetc(input); 
 
 	
 	while(!feof(input)){ 
 		if(i >3)
 		i = 0;
-		ch+=pwd[i++];
-		fputc(ch,output); 
-		ch=fgetc(input); 
+		cc+=pwd[i++];
+		fputc(cc,output); 
+		cc=fgetc(input); 
 	} 
 
 } 
@@ -94,7 +94,7 @@ void decoding(string fName,string outfName,char *pwd)
 	FILE *input,*output;
 	strcpy(inFile, fName.c_str());
 	strcpy(outFile, outfName.c_str());
-	register char ch; 
+	char cc;
 	int i=0; 
 	input=fopen(inFile,"r");
 	if(input==NULL){ 
@@ -108,14 +108,14 @@ void decoding(string fName,string outfName,char *pwd)
 	} 
 	
 	while(pwd[++i]);  	
-	ch=fgetc(input); 
+	cc=fgetc(input); 
 	
 	while(!feof(input)){ 
 		if(i >3)
 		i = 0;
-		ch -= pwd[i++];
-		fputc(ch,output);
-		ch=fgetc(input); 
+		cc -= pwd[i++];
+		fputc(cc,output);
+		cc=fgetc(input); 
 	} 
 
 } 
